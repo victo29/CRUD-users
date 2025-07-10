@@ -2,7 +2,7 @@ from typing import Dict, List
 
 from src.data.interfaces.users_repository import UsersRepositoryInterface
 from src.domain.use_cases.user_finder import UserFinder as UserFinderInterface
-from src.domain.returns.user_finder_retun import UserFinderReturn
+from src.domain.returns.user_use_cases_retuns import UserFinderReturn
 from src.domain.models.users import Users
 
 

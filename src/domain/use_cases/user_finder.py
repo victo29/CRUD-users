@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.domain.returns.user_finder_retun import UserFinderReturn
+from src.domain.returns.user_use_cases_retuns import UserFinderReturn
 
 class UserFinder(ABC):
 
