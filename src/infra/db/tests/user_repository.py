@@ -16,6 +16,6 @@ class UsersRepositorySpy():
     def select_user(self, first_name: str) -> List[Users]:
         self.select_user_attributes["first_name"] = first_name
         return[
-            Users(23, first_name, 'last', 43),
-            Users(23, first_name, 'last_2', 12),
+            Users(first_name=first_name, last_name='last', age= 43),
+            Users(first_name=first_name, last_name='last_2', age=12),
         ]
