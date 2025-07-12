@@ -52,3 +52,19 @@ class UsersRepository(UsersRepositoryInterface):
             except Exception as exception:
                 database.session.rollback()
                 raise exception
+
+    @classmethod
+    def delete_user(cls, id:int) -> Users:
+        with DBconnectionHandler() as database:
+            try:
+                user = database.session.query(UsersEntity).filter(UsersEntity.id == id).first()
+
+                if user:
+                    database.session.delete(user)
+                    database.session.commit()
+
+                return user
+
+            except Exception as exception:
+                database.session.rollback()
+                raise exception

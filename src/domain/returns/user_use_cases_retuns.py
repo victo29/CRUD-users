@@ -15,3 +15,8 @@ class UserRegisterReturn(BaseModel):
     type: str
     count: int
     attributes: Dict
+
+class UserDeleteReturn(BaseModel):
+    type: str
+    count: int
+    attributes: Dict

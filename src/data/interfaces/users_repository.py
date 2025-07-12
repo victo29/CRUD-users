@@ -16,3 +16,7 @@ class UsersRepositoryInterface(ABC):
   @abstractmethod
   def list_users(self) -> List[Users]:
     raise NotImplementedError("'list_user' must be implemented")
+
+  @abstractmethod
+  def delete_user(self, id:int) -> Users:
+    raise NotImplementedError("'delete_user' must be implemented")
