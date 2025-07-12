@@ -34,7 +34,7 @@ class UserFinder(UserFinderInterface):
     def __format_response(cls, users: List[Users]) -> UserFinderReturn:
         attributes = []
         for user in users:
-            attributes.append({"first_name": user.first_name, "age": user.age})
+            attributes.append({"id":user.id ,"first_name": user.first_name, "age": user.age})
 
         return UserFinderReturn(
             type = 'Users',
