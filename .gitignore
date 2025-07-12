@@ -2,4 +2,5 @@
 .pyteste_cache
 .env
 venv
+.venv
 docker-clean
