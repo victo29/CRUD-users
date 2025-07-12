@@ -6,6 +6,11 @@ class UserFinderReturn(BaseModel):
     count: int
     attributes: List[Dict]
 
+class UserListReturn(BaseModel):
+    type: str
+    count: int
+    attributes: List[Dict]
+
 class UserRegisterReturn(BaseModel):
     type: str
     count: int

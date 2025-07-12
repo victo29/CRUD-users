@@ -38,3 +38,17 @@ class UsersRepository(UsersRepositoryInterface):
             except Exception as exception:
                 database.session.rollback()
                 raise exception
+
+    @classmethod
+    def list_users(cls) -> List[Users]:
+        with DBconnectionHandler() as database:
+            try:
+                users = (
+                    database.session
+                    .query(UsersEntity)
+                    .all()
+                )
+                return users
+            except Exception as exception:
+                database.session.rollback()
+                raise exception

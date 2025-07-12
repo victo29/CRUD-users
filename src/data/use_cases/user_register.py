@@ -4,8 +4,8 @@ from src.domain.returns.user_use_cases_retuns import UserRegisterReturn
 
 class UserRegister(UserRegisterInterface):
 
-    def __init__(self, user_repository: UsersRepositoryInterface) -> None:
-        self. __user_repository = user_repository
+    def __init__(self, users_repository: UsersRepositoryInterface) -> None:
+        self. __users_repository = users_repository
 
     def register(self, first_name:str, last_name:str, age:int) -> UserRegisterReturn:
         self.__validate_name(first_name)
@@ -24,7 +24,7 @@ class UserRegister(UserRegisterInterface):
             raise Exception('Name is too long to search')
 
     def __registry_user_infromations(self, first_name:str, last_name:str, age:int) -> None:
-        self.__user_repository.insert_user(first_name, last_name, age)
+        self.__users_repository.insert_user(first_name, last_name, age)
 
     @classmethod
     def __format_response(cls, first_name:str, last_name:str, age:int) -> UserRegisterReturn:
