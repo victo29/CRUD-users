@@ -8,6 +8,8 @@ from src.main.composers.user_list_composer import user_list_composer
 from src.main.composers.user_delete_composer import user_delete_composer
 from src.main.composers.user_update_composer import user_update_composer
 
+from src.errors.error_handler import handle_erros
+
 router = APIRouter(
     prefix="/users",
     tags=["collect"],
@@ -16,35 +18,55 @@ router = APIRouter(
 
 @router.get('/find')
 async def find_user(request: Request):
-    controller = user_finder_composer()
-    http_response = await request_adapter(request,controller)
+    http_response = None
+
+    try:
+        http_response = await request_adapter(request, user_finder_composer())
+    except Exception as exception:
+        http_response = handle_erros(exception)
 
     return JSONResponse(status_code=http_response.status_code, content=http_response.body)
 
 @router.post('/register')
 async def register_user(request: Request):
-    controller = user_register_composer()
-    http_response = await request_adapter(request,controller)
+    http_response = None
+
+    try:
+        http_response = await request_adapter(request, user_register_composer())
+    except Exception as exception:
+        http_response = handle_erros(exception)
 
     return JSONResponse(status_code= http_response.status_code, content= http_response.body)
 
 @router.get('/listUsers')
 async def list_users(request: Request):
-    controller = user_list_composer()
-    http_response = await request_adapter(request,controller)
+    http_response = None
+
+    try:
+        http_response = await request_adapter(request, user_list_composer())
+    except Exception as exception:
+        http_response = handle_erros(exception)
 
     return JSONResponse(status_code= http_response.status_code, content= http_response.body)
 
 @router.delete('/delete')
 async def delete_user(request: Request):
-    controller = user_delete_composer()
+    http_response = None
 
-    http_response = await request_adapter(request,controller)
+    try:
+        http_response = await request_adapter(request, user_delete_composer())
+    except Exception as exception:
+        http_response = handle_erros(exception)
+
     return JSONResponse(status_code= http_response.status_code, content= http_response.body)
 
 @router.put('/update')
 async def update_user(request: Request):
-    contoller = user_update_composer()
+    http_response = None
 
-    http_response = await request_adapter(request, contoller)
+    try:
+        http_response = await request_adapter(request, user_update_composer())
+    except Exception as exception:
+        http_response = handle_erros(exception)
+
     return JSONResponse(status_code= http_response.status_code, content= http_response.body)

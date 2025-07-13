@@ -4,6 +4,7 @@ from src.data.interfaces.users_repository import UsersRepositoryInterface
 from src.domain.use_cases.user_finder import UserFinder as UserFinderInterface
 from src.domain.returns.user_use_cases_retuns import UserFinderReturn
 from src.domain.models.users import Users
+from src.errors.types import HttpBadRequestError, HttpNotFoundError
 
 
 class UserFinder(UserFinderInterface):
@@ -20,14 +21,14 @@ class UserFinder(UserFinderInterface):
     @classmethod
     def __validate_name(cls, first_name: str) -> None:
         if not first_name.isalpha():
-            raise Exception('Name is invalid to search')
+            raise HttpBadRequestError('Name is invalid to search')
 
         if len(first_name) > 18:
-            raise Exception('Name is too long to search')
+            raise HttpBadRequestError('Name is too long to search')
 
     def __search_user(self, first_name:str) -> List[Users]:
         users = self.__users_repository.select_user(first_name)
-        if not users: raise Exception('User not found')
+        if not users: raise HttpNotFoundError('User not found')
         return users
 
     @classmethod
