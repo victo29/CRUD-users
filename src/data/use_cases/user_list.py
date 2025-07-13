@@ -24,7 +24,7 @@ class UserList(UserListInterface):
     def __format_response(cls, users: List[Users]) -> UserListReturn:
         attributes = []
         for user in users:
-            attributes.append({"id":user.id ,"first_name": user.first_name, "age": user.age})
+            attributes.append({"id":user.id ,"first_name": user.first_name, "last_name": user.last_name ,"age": user.age})
 
         return UserListReturn(
             type = 'Users',
