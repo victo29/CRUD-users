@@ -20,3 +20,8 @@ class UserDeleteReturn(BaseModel):
     type: str
     count: int
     attributes: Dict
+
+class UserUpdateReturn(BaseModel):
+    type: str
+    count: int
+    attributes: Dict

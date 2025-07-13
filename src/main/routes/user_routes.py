@@ -6,6 +6,7 @@ from src.main.composers.user_finder_composer import user_finder_composer
 from src.main.composers.user_register_composer import user_register_composer
 from src.main.composers.user_list_composer import user_list_composer
 from src.main.composers.user_delete_composer import user_delete_composer
+from src.main.composers.user_update_composer import user_update_composer
 
 router = APIRouter(
     prefix="/users",
@@ -39,4 +40,11 @@ async def delete_user(request: Request):
     controller = user_delete_composer()
 
     http_response = await request_adapter(request,controller)
+    return JSONResponse(status_code= http_response.status_code, content= http_response.body)
+
+@router.put('/update')
+async def update_user(request: Request):
+    contoller = user_update_composer()
+
+    http_response = await request_adapter(request, contoller)
     return JSONResponse(status_code= http_response.status_code, content= http_response.body)

@@ -20,3 +20,7 @@ class UsersRepositoryInterface(ABC):
   @abstractmethod
   def delete_user(self, id:int) -> Users:
     raise NotImplementedError("'delete_user' must be implemented")
+
+  @abstractmethod
+  def update_user(self, id:int,first_name: str, last_name: str, age: int) -> Users:
+    raise NotImplementedError("'update_user' must be implemented")

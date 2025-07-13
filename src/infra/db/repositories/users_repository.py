@@ -68,3 +68,25 @@ class UsersRepository(UsersRepositoryInterface):
             except Exception as exception:
                 database.session.rollback()
                 raise exception
+
+    @classmethod
+    def update_user(cls, id: int, first_name: str, last_name: str, age: int) -> Users:
+        with DBconnectionHandler() as database:
+            try:
+                user = database.session.query(UsersEntity).filter(UsersEntity.id == id).first()
+
+                if user:
+                    user.first_name = first_name
+                    user.last_name = last_name
+                    user.age = age
+
+                    database.session.commit()
+
+                    database.session.refresh(user)
+                    database.session.expunge(user)
+
+                return user
+
+            except Exception as exception:
+                database.session.rollback()
+                raise exception
