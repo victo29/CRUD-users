@@ -20,7 +20,7 @@ router = APIRouter(
 )
 
 @router.get('/find')
-async def find_user(first_name:str):
+def find_user(first_name:str):
     http_request = HttpRequest(query_params=first_name)
 
     try:
@@ -33,7 +33,7 @@ async def find_user(first_name:str):
     return JSONResponse(status_code=http_response.status_code, content=http_response.body)
 
 @router.post('/register')
-async def register_user(user: Users):
+def register_user(user: Users):
     http_request = HttpRequest(body=user.model_dump())
     try:
         controller =  user_register_composer()
