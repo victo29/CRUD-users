@@ -8,6 +8,8 @@ from src.main.composers.user_list_composer import user_list_composer
 from src.main.composers.user_delete_composer import user_delete_composer
 from src.main.composers.user_update_composer import user_update_composer
 
+from src.validators import user_finder_validator, user_register_validator, user_delete_validator, user_update_validator
+
 from src.errors.error_handler import handle_erros
 
 router = APIRouter(
@@ -21,6 +23,7 @@ async def find_user(request: Request):
     http_response = None
 
     try:
+        await user_finder_validator(request)
         http_response = await request_adapter(request, user_finder_composer())
     except Exception as exception:
         http_response = handle_erros(exception)
@@ -32,6 +35,7 @@ async def register_user(request: Request):
     http_response = None
 
     try:
+        await user_register_validator(request)
         http_response = await request_adapter(request, user_register_composer())
     except Exception as exception:
         http_response = handle_erros(exception)
@@ -54,6 +58,7 @@ async def delete_user(request: Request):
     http_response = None
 
     try:
+        await user_delete_validator(request)
         http_response = await request_adapter(request, user_delete_composer())
     except Exception as exception:
         http_response = handle_erros(exception)
@@ -65,6 +70,7 @@ async def update_user(request: Request):
     http_response = None
 
     try:
+        await user_update_validator(request)
         http_response = await request_adapter(request, user_update_composer())
     except Exception as exception:
         http_response = handle_erros(exception)
