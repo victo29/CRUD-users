@@ -8,7 +8,7 @@ class UserDeleteController(ControllerInterface):
         self. __use_case = use_case
 
     def handle(self, http_request: HttpRequest) -> HttpResponse:
-        id = http_request.query_params['id']
+        id = http_request.query_params
         response = self.__use_case.delete(id)
         return HttpResponse(
             status_code=200,

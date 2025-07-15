@@ -8,7 +8,7 @@ class UserFinderController(ControllerInterface):
         self. __use_case = use_case
 
     def handle(self, http_request: HttpRequest) -> HttpResponse:
-        first_name = http_request.query_params['first_name']
+        first_name = http_request.query_params
         response = self.__use_case.find(first_name)
         return HttpResponse(
             status_code=200,

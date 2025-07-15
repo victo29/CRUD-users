@@ -10,7 +10,7 @@ class UserUpdateController(ControllerInterface):
         self.__use_case = use_case
 
     def handle(self, http_request: HttpRequest) -> HttpResponse:
-        id = http_request.query_params['id']
+        id = http_request.query_params
         first_name = http_request.body['first_name']
         last_name = http_request.body['last_name']
         age = http_request.body['age']
